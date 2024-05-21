@@ -1,10 +1,7 @@
-''' This is the main application file for the RONG application. It contains the main functions and the support
-    functions for the application. '''
-
 #%% ----------------------------- IMPORTS  -----------------------------------
 # import libraries
 import streamlit as st
-#import credentials
+import credentials
 import os
 import openai
 from gtts import gTTS
@@ -16,8 +13,8 @@ import pandas as pd
 
 #%% ----------------------------- LANGCHAIN FUNCTIONS -----------------------------------
 script_dir = os.path.dirname(os.path.abspath(__file__))
-#OPENAI_API_KEY = credentials.OPENAI_API_KEY
-OPENAI_API_KEY = "sk-proj-WNLp6cm8VhUgM38VcSA3T3BlbkFJxaCoWarY5JQFpb26feOb"
+OPENAI_API_KEY = credentials.OPENAI_API_KEY
+
 
 # %% ----------------------------- AUDIO RECORDING STREAMLIT -----------------------------------
 def rec_streamlit():
@@ -57,28 +54,25 @@ def speak_answer(answer, tts_enabled):
 #%% ----------------------------- MAIN APPLICATION FUNCTIONS -----------------------------------
 def home():
     # ------------------ SETTINGS ------------------
-    st.set_page_config(page_title="Home", layout="wide")
+    st.set_page_config(page_title="Home", layout="wide",)
     st.markdown("""<style>.reportview-container .main .block-container {max-width: 95%;}</style>""",
                 unsafe_allow_html=True)
 
     # ------------------ HOME PAGE ------------------
-    st.title("MAIN FILE MULTIAGENT 🎙️📖🥷")
-    st.write("""This is a repository that was made for a Hackathon orginized by Lablab.AI. The challenge was to create different types of agents that will carry our several tasks. Use the power of LLMs with LangChain and OpenAI to scan through your documents. Find information 
-    and insight's with lightning speed. 🚀 Create new content with the support of state of the art language models and 
-    and voice command your way through your documents. 🎙️""")
+    st.title("Infinite Interact: Multi-Agent Operational Suite 🤖")
+    st.write("""This repository is the result of an advanced project aimed at developing a suite of intelligent agents designed to perform a variety of tasks. These agents harness the power of Large Language Models (LLMs) in conjunction with LangChain and OpenAI, enabling users to efficiently navigate and manage their documents. By leveraging these technologies, the agents can extract information and insights with remarkable speed, create new content, and allow users to control their documents through voice commands. 🚀🎙️""")
     st.write("We wills how you 5 different agents that we build\n"
-             "1. **AssemblyAI Agent**\n"
-             "2. **PandasAI Agent**\n"
-             "3. **Presentation Agent**\n"
-             "4. **README Agent**\n"
-             "5. **Webscraping generator Agent**\n""")
+             "1. **Multimedia Analysis Agent 🎥🔍**\n"
+             "2. **DataFrame Assistant Agent 📊🗂️**\n"
+             "3. **Presentation Creator Agent 📑🖥️**\n"
+             "4. **Documentation Generator Agent 📋📁**\n"
+             "5. **WebContent Extractor Agent 🌐🕸️**\n""")
 
 
 
     # ------------------ SIDE BAR SETTINGS ------------------
     st.sidebar.subheader("Settings:")
     tts_enabled = st.sidebar.checkbox("Enable Text-to-Speech", value=False)
-    ner_enabled = st.sidebar.checkbox("Enable NER in Response", value=False)
 
 
 # Run home function
