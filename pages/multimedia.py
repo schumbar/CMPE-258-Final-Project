@@ -1,4 +1,4 @@
-''' This is the subpage for the AssemblyAI agent.
+''' This agent interacts with YouTube or any local video or audio files, enabling seamless communication and information extraction from multimedia content.
 '''
 
 #%% ---------------------------------------------  IMPORTS  ----------------------------------------------------------#
@@ -14,12 +14,12 @@ from langchain.chains import VectorDBQA
 from langchain import OpenAI
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import TextLoader
-#from credentials import OPENAI_API_KEY, ASSEMBLYAI_API_KEY
+from credentials import OPENAI_API_KEY, ASSEMBLYAI_API_KEY
 import pytube
 import requests
 import time
 
-OPENAI_API_KEY="sk-proj-WNLp6cm8VhUgM38VcSA3T3BlbkFJxaCoWarY5JQFpb26feOb"
+
 #%% ----------------------------------------  LANGCHAIN & ASSEMBLYAI PRELOADS -----------------------------------------------------#
 # --- LangChain ---
 embeddings = OpenAIEmbeddings(disallowed_special=(), openai_api_key=OPENAI_API_KEY)
@@ -28,7 +28,7 @@ llm_csv = OpenAI(openai_api_key=OPENAI_API_KEY)
 # --- AssemblyAI ---
 base_url = "https://api.assemblyai.com/v2"
 headers = {
-    "authorization": 'ead43fc7562949b29aa29e896918e553'
+    "authorization": ASSEMBLYAI_API_KEY,
 }
 
 
@@ -57,17 +57,17 @@ st.set_page_config(page_title="Home", layout="wide")
 st.markdown("""<style>.reportview-container .main .block-container {max-width: 95%;}</style>""", unsafe_allow_html=True)
 
 # --------------------- HOME PAGE -------------------- #
-st.title("LANGCHAIN ASSEMBLYAI-AGENT 🤖")
+st.title("Multimedia-AGENT 🤖")
 st.write("""Use the power of LLMs and Assembly AI to interact with Video and audio files. By uploading a video, audio file or a Youtube link, 
         you can interact with the content of the file.The video will be transcribed and the text will be used to interact with the LLMs. 
         Speakers will also be detected""")
 
-st.write("Let's start interacting with AssemblyAI!")
+st.write("Let's start interacting with Multimedia AI!")
 
 # ----------------- SIDE BAR SETTINGS ---------------- #
 st.sidebar.subheader("Settings:")
 tts_enabled = st.sidebar.checkbox("Enable Text-to-Speech", value=False)
-ner_enabled = st.sidebar.checkbox("Enable NER in Response", value=False)
+
 
 # ------------------ FILE UPLOADER ------------------- #
 st.sidebar.subheader("File Uploader:")
