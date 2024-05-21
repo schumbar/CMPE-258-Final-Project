@@ -1,5 +1,5 @@
 '''
-PandasAI is a library that allows you to use the power of language models to interact with your data.
+This agent specializes in interacting with CSV files, providing intelligent conversations and data manipulations within tabular datasets.
 '''
 
 #%% ---------------------------------------------  IMPORTS  ----------------------------------------------------------
@@ -10,7 +10,7 @@ from pandasai.llm.openai import OpenAI
 
 # from pandasai.llm import OpenAssistant
 # from pandasai.llm import Starcoder
-#from credentials import OPENAI_API_KEY
+from credentials import OPENAI_API_KEY
 import os
 import streamlit as st
 import matplotlib.pyplot as plt
@@ -23,13 +23,13 @@ st.markdown("""<style>.reportview-container .main .block-container {max-width: 9
 
 # --------------------- HOME PAGE -------------------- #
 st.title("PANDAS AI (Chart Generator) 🐼")
-st.write("""PandasAI is a library that allows you to use the power of language models to interact with your data. Add a file and start creating visuals and insights using only natural language.""")
+st.write("""This Agent allows you to use the power of language models to interact with your data. Add a file and start creating visuals and insights using only natural language.""")
 st.write("Let's start interacting with PandasAI!")
 
 # ------------------ SIDE BAR SETTINGS ------------------
 st.sidebar.subheader("Settings:")
 tts_enabled = st.sidebar.checkbox("Enable Text-to-Speech", value=False)
-ner_enabled = st.sidebar.checkbox("Enable NER in Response", value=False)
+
 
 
 
@@ -50,7 +50,7 @@ models = {
 model_to_run = 'OpenAI'
 
 # Enter API Key
-API_KEY = "sk-proj-WNLp6cm8VhUgM38VcSA3T3BlbkFJxaCoWarY5JQFpb26feOb"
+API_KEY = OPENAI_API_KEY
  #@param {type:"string"}
 
 # If question is not empty and csv file is not empty

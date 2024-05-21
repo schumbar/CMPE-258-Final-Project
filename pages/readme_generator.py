@@ -1,11 +1,11 @@
 '''
-This LangChain Agent searches csv tables and replies with summarizations and aggregations
+This agent generates comprehensive README files along with a directory tree from a specified local path, streamlining the documentation process.
 '''
 
 #%% ---------------------------------------------  IMPORTS  ----------------------------------------------------------#
 import streamlit as st
 import openai
-#from credentials import OPENAI_API_KEY
+from credentials import OPENAI_API_KEY
 from main import rec_streamlit, speak_answer, get_transcript_whisper
 import time
 import en_core_web_sm
@@ -21,7 +21,7 @@ from langchain.llms import OpenAI
 from pathlib import Path
 
 #%% ----------------------------------------  LANGCHAIN PRELOADS -----------------------------------------------------#
-OPENAI_API_KEY="sk-proj-WNLp6cm8VhUgM38VcSA3T3BlbkFJxaCoWarY5JQFpb26feOb"
+#OPENAI_API_KEY="sk-proj-WNLp6cm8VhUgM38VcSA3T3BlbkFJxaCoWarY5JQFpb26feOb"
 embeddings = OpenAIEmbeddings(disallowed_special=(), openai_api_key=OPENAI_API_KEY)
 llm_csv = OpenAI(openai_api_key=OPENAI_API_KEY)
 
@@ -38,7 +38,7 @@ and insight's with lightning speed. 🚀 Create new content with the support of 
 and voice command your way through your documents. 🎙️
 This LangChain Agent searches a directory for markdown files and generates a README.md file with the most important content.
 """)
-st.write("Let's start interacting with GPT-4!")
+st.write("Let's start interacting with GPT-4o!")
 
 temp_slider = st.sidebar.slider("Temperature", min_value=0.0, max_value=1.0, value=0.1, step=0.05, key="temperature")
 recording_slider = st.sidebar.slider("Recording time", min_value=4, max_value=10, value=6, step=1, key="recording_time")
@@ -47,7 +47,7 @@ recording_slider = st.sidebar.slider("Recording time", min_value=4, max_value=10
 # ----------------- SIDE BAR SETTINGS ---------------- #
 st.sidebar.subheader("Settings:")
 tts_enabled = st.sidebar.checkbox("Enable Text-to-Speech", value=False)
-ner_enabled = st.sidebar.checkbox("Enable NER in Response", value=False)
+
 
 def run_GPT4(systemprompt, prompt, temperature):
     """Run GPT4 with the prompt and return the response"""

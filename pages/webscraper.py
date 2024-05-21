@@ -1,7 +1,5 @@
 '''
-This file contains the code for the LangChain Webscraper page. It allows the user to input a website link, and creates
-a summary of the website. It also allows the user to input a question, and the program will search the website for the
-answer.
+This agent scrapes websites and facilitates interactive conversations with the scraped content, making data extraction and analysis more efficient.
 '''
 
 #%% ---------------------------------------------  IMPORTS  ----------------------------------------------------------#
@@ -15,15 +13,14 @@ from langchain.llms import OpenAI
 from langchain_community.document_loaders import TextLoader
 from langchain_community.vectorstores import Chroma
 # from langchain import VectorDBQA
-from langchain.chains import VectorDBQA
+from langchain.chains import VectorDBQA,RetrievalQA
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 # pip install python-magic-bin==0.4.14
 #import magic
-#from credentials import OPENAI_API_KEY
+from credentials import OPENAI_API_KEY
 import streamlit as st
 
-OPENAI_API_KEY="sk-proj-WNLp6cm8VhUgM38VcSA3T3BlbkFJxaCoWarY5JQFpb26feOb"
 # --------------------  WEBSITE SCRAPE  -------------------- #
 def get_html_content(url):
     response = requests.get(url)
@@ -39,16 +36,16 @@ st.set_page_config(page_title="Home", layout="wide")
 st.markdown("""<style>.reportview-container .main .block-container {max-width: 95%;}</style>""", unsafe_allow_html=True)
 
 # --------------------- HOME PAGE -------------------- #
-st.title("WEBSCRAPER (DOCUNINJA 🎙️📖🥷)")
+st.title("WEBSCRAPER Agent 🎙️📖")
 st.write("""Use the power of LLMs with LangChain and OpenAI to scan through websites! Just input the link, and ask questions immediately! 🚀 Create new content with the support of state of the art language models and 
 and voice command your way through your documents. 🎙️""")
 
-st.write("Let's start interacting with GPT-4!")
+st.write("Let's start interacting with GPT-4o!")
 
 # ----------------- SIDE BAR SETTINGS ---------------- #
 st.sidebar.subheader("Settings:")
 tts_enabled = st.sidebar.checkbox("Enable Text-to-Speech", value=False)
-ner_enabled = st.sidebar.checkbox("Enable NER in Response", value=False)
+
 
 # ------------------- WEBSITE  HANDLER ------------------- #
 website = st.text_input('Enter the link of the website you want to analyze:')
@@ -78,7 +75,7 @@ if website:
         texts = text_splitter.split_documents(documents)
         embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
         docsearch = Chroma.from_documents(texts, embeddings)
-        qa = VectorDBQA.from_chain_type(llm=OpenAI(openai_api_key=OPENAI_API_KEY), chain_type="stuff", vectorstore=docsearch)
+        qa = RetrievalQA.from_chain_type(llm=OpenAI(openai_api_key=OPENAI_API_KEY), chain_type="stuff", vectorstore=docsearch)
 
     else:
         st.error("Invalid website. Please enter a valid website.")

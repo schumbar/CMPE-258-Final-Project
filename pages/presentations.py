@@ -1,11 +1,11 @@
 '''
-This LangChain Agent creates presentations from different contents.
+This agent creates presentations from Jupyter notebook files (.ipynb) and allows users to chat with any file type, including PDF, HTML, and Python scripts (.py).
 '''
 
 #%% ---------------------------------------------  IMPORTS  ----------------------------------------------------------#
 import streamlit as st
 import nbformat
-#from credentials import OPENAI_API_KEY
+from credentials import OPENAI_API_KEY
 from langchain_community.embeddings import OpenAIEmbeddings
 from langchain_community.chat_models import ChatOpenAI
 import tempfile
@@ -27,7 +27,7 @@ current_directory = os.path.dirname(os.path.abspath(__file__))
 template_path = os.path.join(current_directory, "../templates/template.pptx")
 output_path = os.path.join(current_directory, "../pres/output.pptx")
 
-OPENAI_API_KEY = "sk-proj-WNLp6cm8VhUgM38VcSA3T3BlbkFJxaCoWarY5JQFpb26feOb"
+
 #%% ----------------------------------------  LANGCHAIN PRELOADS -----------------------------------------------------#
 embeddings = OpenAIEmbeddings(disallowed_special=(), openai_api_key=OPENAI_API_KEY)
 llm_doc = ChatOpenAI(openai_api_key=OPENAI_API_KEY, request_timeout=120)
@@ -39,7 +39,7 @@ st.markdown("""<style>.reportview-container .main .block-container {max-width: 9
 
 # --------------------- HOME PAGE -------------------- #
 st.title("PRESENTATION AGENT 📊")
-st.write("""Use the power of LLMs with LangChain and OpenAI to scan through your Notebooks and create a Powerpoint presentation. 
+st.write("""Use the power of LLMs with LangChain and OpenAI GPT-4o to scan through your Notebooks and create a Powerpoint presentation. 
         Find information and insight's with lightning speed. 🚀 Create new content with the support of state of the art language models and 
         and voice command your way through your documents. 🎙️""")
 
@@ -160,7 +160,7 @@ def create_presentation_nb(notebook, template_path):
 # ----------------- SIDE BAR SETTINGS ---------------- #
 st.sidebar.subheader("Settings:")
 tts_enabled = st.sidebar.checkbox("Enable Text-to-Speech", value=False)
-ner_enabled = st.sidebar.checkbox("Enable NER in Response", value=False)
+
 
 # ------------------ FILE UPLOADER ------------------- #
 st.sidebar.subheader("File Uploader:")
