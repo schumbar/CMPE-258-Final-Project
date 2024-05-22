@@ -54,7 +54,7 @@ From here you can navigate to the URL that streamlit provides and use the applic
 
 ### Multimedia Agent
 
-URL: https://www.youtube.com/watch?v=o-z3WvMDP0Q&ab_channel=FOX11LosAngeles
+URL: `https://www.youtube.com/watch?v=o-z3WvMDP0Q&ab_channel=FOX11LosAngeles`
 Prompt: Which president died in a helicopter crash?
 
 ### PandasAI
@@ -72,12 +72,12 @@ Query:
 This project has the following functionality:
 
 1. We are able to input a Youtube URL and we get a transcript of the video. We can also query questions regarding the video and an AI Agent will answer those questions.
-2. We can upload a CSV file and can ask queries regarding that CSV file that will result in plots. 
+2. We can upload a CSV file and can ask queries regarding that CSV file that will result in plots.
 3. We can upload a .ipynb file and create presentations from that file.
 4. We can provide a folder structure and generate a README.md file.
 5. We can perform webscraping and query webscraped information.
 
 ### Webscraper
 
-URL: https://iowapoetry.com/pushcart2021.htm
-Query: Retrieve all of the poem titles, poem authors, and poem content that are on the webpage. There should be six poems in total, and you should structure your output
+URL: `https://iowapoetry.com/pushcart2021.htm`
+Query: Retrieve all of the poem titles, poem authors, and poem content that are on the webpage. There should be six poems in total, and you should structure your output.
