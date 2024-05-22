@@ -27,7 +27,7 @@ Please see below for the list of deliverables that have been submitted for this 
 2. `Deliverables/CMPE258 Final Project Presentation.pdf`: Powerpoint presentation detailing the project.
 3. `Deliverables/CMPE258 Final Project Report - BayAreaRockers.pdf`: Project Report for this project.
 4. `Screenshots`: Folder containing screenshots of the application in use.
-5. [Link to Video Presentation](youtube.com)
+5. [Link to Video Presentation](https://www.youtube.com/watch?v=4tY0GGwW4AM&ab_channel=ShawnChumbar)
 
 ## Division of Labor
 
