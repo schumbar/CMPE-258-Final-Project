@@ -13,7 +13,7 @@ from langchain.llms import OpenAI
 from langchain_community.document_loaders import TextLoader
 from langchain_community.vectorstores import Chroma
 # from langchain import VectorDBQA
-from langchain.chains import VectorDBQA,RetrievalQA
+from langchain.chains import VectorDBQA
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 # pip install python-magic-bin==0.4.14
@@ -75,7 +75,7 @@ if website:
         texts = text_splitter.split_documents(documents)
         embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
         docsearch = Chroma.from_documents(texts, embeddings)
-        qa = RetrievalQA.from_chain_type(llm=OpenAI(openai_api_key=OPENAI_API_KEY), chain_type="stuff", vectorstore=docsearch)
+        qa = VectorDBQA.from_chain_type(llm=OpenAI(openai_api_key=OPENAI_API_KEY), chain_type="stuff", vectorstore=docsearch)
 
     else:
         st.error("Invalid website. Please enter a valid website.")
