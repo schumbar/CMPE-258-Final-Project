@@ -21,7 +21,6 @@ from langchain.llms import OpenAI
 from pathlib import Path
 
 #%% ----------------------------------------  LANGCHAIN PRELOADS -----------------------------------------------------#
-#OPENAI_API_KEY="sk-proj-WNLp6cm8VhUgM38VcSA3T3BlbkFJxaCoWarY5JQFpb26feOb"
 embeddings = OpenAIEmbeddings(disallowed_special=(), openai_api_key=OPENAI_API_KEY)
 llm_csv = OpenAI(openai_api_key=OPENAI_API_KEY)
 
